@@ -13,7 +13,7 @@ const app = express();
 const port = 8080;
 
 // middleware
-const pathToDistFolder = path.join(__dirname, '..', 'frontend', 'dist')
+const pathToDistFolder = path.join(__dirname, '../frontend/dist');
 const serveStatic = express.static(pathToDistFolder);
 app.use(serveStatic);
 

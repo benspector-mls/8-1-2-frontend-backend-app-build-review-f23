@@ -16,7 +16,7 @@ const port = 8080;
 // const parseJSON = express.json()
 app.use(express.json())
 
-const pathToDistFolder = path.join(__dirname, '..', 'frontend', 'dist')
+const pathToDistFolder = path.join(__dirname, '../frontend/dist')
 const serveStatic = express.static(pathToDistFolder);
 app.use(serveStatic);
 
