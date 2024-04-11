@@ -13,6 +13,9 @@ const app = express();
 const port = 8080;
 
 // middleware
+// const parseJSON = express.json()
+app.use(express.json())
+
 const pathToDistFolder = path.join(__dirname, '..', 'frontend', 'dist')
 const serveStatic = express.static(pathToDistFolder);
 app.use(serveStatic);
@@ -23,8 +26,22 @@ const serveAllAnimals = (req, res, next) => {
   res.send(Animal.list())
 }
 
+// The client sends a POST request to 
+// create a new animal...
 const createAnimal = (req, res, next) => {
-  res.send('hello')
+  /* 
+  0. get the data from the request body (req.body)
+  1. creates a new instance of the Animal class
+  with the info given
+  2. send it back to the client
+  */
+  console.log(req.body);
+  const { name, type, legs, color, hasFur } = req.body;
+  if (!name || !type || !legs || !color || hasFur === undefined) {
+    return res.send("not enough data");
+  }
+  const newAnimal = new Animal(name, type, legs, color, hasFur);
+  res.send(newAnimal);
 }
 
 // endpoints
